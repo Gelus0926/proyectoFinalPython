@@ -30,6 +30,6 @@ class FormularioPlatos(forms.Form):
     )
     descripcion=forms.CharField(
         required=True,
-        max_length=25,
+        max_length=100,
         widget=forms.Textarea(attrs={'class':'form-control mb-3'})
     )

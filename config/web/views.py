@@ -23,6 +23,18 @@ def Platos(request):
         'formulario':formulario
     }
 
+    #PREGUNTAMOS SI EXISTE ALGUNA PETICIÓN DE TIPO POST ASOCIADA A LA VISTA 
+    if request.method=='POST':
+        #se deberian capturar los datos del formulario
+        datosDelFormulario=FormularioPlatos(request.POST)
+        #verificar si los datos llegaron correctamente(VALIDACIONES OK)
+        if datosDelFormulario.is_valid():
+            #capturamos la data
+            datosDelPlato=datosDelFormulario.cleaned_data
+            print(datosDelFormulario)
+            print(datosDelPlato)
+
+
     return render(request,'menuplatos.html', data)
 
 def Empleados(request):
@@ -32,5 +44,16 @@ def Empleados(request):
     data={
         'formularioPersonal':formularioPersonal
     }
+
+    #PREGUNTAMOS SI EXISTE ALGUNA PETICIÓN DE TIPO POST ASOCIADA A LA VISTA 
+    if request.method=='POST':
+        #se deberian capturar los datos del formulario
+        datosFormulario=FormularioPersonal(request.POST)
+        #verificar si los datos llegaron correctamente(VALIDACIONES OK)
+        if datosFormulario.is_valid():
+            #capturamos la data
+            datosEmpleados=datosFormulario.cleaned_data
+            print(datosFormulario)
+            print(datosEmpleados)
 
     return render(request,'registroempleados.html', data)

@@ -27,9 +27,10 @@
                 </div>
                 <div class="col-12 col-md-6">
                     <h2>Registro Empleados</h2>
-                    <form>
+                    <form method="POST">
                         {{formularioPersonal}}
-                        <button type="submit" class="btn btn-outline-success w-100">Enviar</button>
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-success w-100">Registrar</button>
                     </form>
                 </div>
             </div>

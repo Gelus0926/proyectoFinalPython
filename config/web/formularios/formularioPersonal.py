@@ -4,10 +4,10 @@ from django import forms
 class FormularioPersonal(forms.Form):
 
     CARGO=(
-        (1, 'Chef'),
-        (2, 'Administrador'),
+        (1, 'Cocinero'),
+        (2, 'Ayudante'),
         (3, 'Mesero'),
-        (4, 'subchef')
+        (4, 'Administrador')
     )
 
     nombres=forms.CharField(
@@ -41,6 +41,6 @@ class FormularioPersonal(forms.Form):
     contacto=forms.CharField(
         required=True,
         max_length=10,
-        label="Salario Del Empleado",
+        label="Contacto Del Empleado",
         widget=forms.NumberInput(attrs={'class':'form-control mb-3'})
     )
