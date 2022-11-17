@@ -8,7 +8,7 @@ class FormularioPlatos(forms.Form):
         (3, 'Postre')
     )
 
-    nombrePlato=forms.CharField(
+    nombre=forms.CharField(
         required=True,
         max_length=25,
         label="Nombre Plato",
@@ -30,6 +30,6 @@ class FormularioPlatos(forms.Form):
     )
     descripcionPlato=forms.CharField(
         required=True,
-        max_length=100,
+        max_length=200,
         widget=forms.Textarea(attrs={'class':'form-control mb-3'})
     )

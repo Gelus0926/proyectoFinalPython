@@ -1,11 +1,14 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
 
 from web.formularios.formularioPlatos import FormularioPlatos
+from web.formularios.formularioEdicionPlatos import FormularioEdicionPlatos
 
 from web.formularios.formularioPersonal import FormularioPersonal
 
 from web.models import Platos
-from web.models import Empleado
+from web.models import Empelado
+
 
 # Create your views here.
 
@@ -14,6 +17,46 @@ from web.models import Empleado
 
 def Home(request):
     return render(request,'index.html')
+
+def MenuPlatos(request):
+
+    platosConsultados=Platos.objects.all()
+
+    formulario=FormularioEdicionPlatos()
+
+    diccionarioEnvio={
+        'platos':platosConsultados,
+        'formulario':formulario
+    }
+
+    return render(request, 'platos.html',diccionarioEnvio)
+
+def EditarPlato(request,id):
+    print(id)
+    #Recibir los datos del formulario y editar mi plato
+    if request.method=='POST':
+        datosFormulario=FormularioEdicionPlatos(request.POST)
+        if datosFormulario.is_valid():
+            datosDelPlato=datosFormulario.cleaned_data
+            try:
+                Platos.objects.filter(pk=id).update(precio=datosDelPlato["precioPlato"])
+                print("EXITO GUARDANDO LOS DATOS")
+
+            except Exception as error:
+                
+                print("ERROR",error)
+
+    return redirect('menu')
+
+
+def Empleados(request):
+    empleadosConsultados=Empelado.objects.all()
+
+    diccionarioEnvio={
+        'empleados':empleadosConsultados
+    }
+
+    return render(request, 'empleados.html',diccionarioEnvio)
 
 def VistaPlatos(request):
 
@@ -37,7 +80,7 @@ def VistaPlatos(request):
             datosDelPlato=datosDelFormulario.cleaned_data
             #Creamos un objeto de tipo MODELO PLATO
             platoNuevo=Platos(
-                nombreplato=datosDelPlato["nombrePlato"],
+                nombre=datosDelPlato["nombre"],
                 fotografia=datosDelPlato["fotografiaPlato"],
                 precio=datosDelPlato["precioPlato"],
                 tipo=datosDelPlato["tipoPlato"],

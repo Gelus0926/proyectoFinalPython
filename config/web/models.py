@@ -122,10 +122,10 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 
-class Empleado(models.Model):
-    id_Empleado = models.AutoField(db_column='id_Empleado', primary_key=True)  # Field name made lowercase.
-    nombres_Empleado = models.CharField(db_column='nombres_Empleado', max_length=50)  # Field name made lowercase.
-    apellidos_Empleado = models.CharField(db_column='apellidos_Empleado', max_length=50)  # Field name made lowercase.
+class Empelado(models.Model):
+    id_empleado = models.AutoField(db_column='id_Empleado', primary_key=True)  # Field name made lowercase.
+    nombres_empleado = models.CharField(db_column='nombres_Empleado', max_length=50)  # Field name made lowercase.
+    apellidos_empleado = models.CharField(db_column='apellidos_Empleado', max_length=50)  # Field name made lowercase.
     foto = models.CharField(max_length=200)
     cargo = models.CharField(max_length=50)
     salario = models.IntegerField()
@@ -137,7 +137,7 @@ class Empleado(models.Model):
 
 
 class Platos(models.Model):
-    nombreplato = models.CharField(db_column='nombrePlato', max_length=50)  # Field name made lowercase.
+    nombre = models.CharField(max_length=50)
     fotografia = models.CharField(max_length=200)
     precio = models.IntegerField()
     tipo = models.IntegerField()
