@@ -116,8 +116,9 @@ def VistaEmpleados(request):
         if datosFormulario.is_valid():
             #capturamos la data
             datosEmpleados=datosFormulario.cleaned_data
+            print(datosEmpleados)
             #Creamos un objeto de tipo MODELO EMPLEADO
-            empleadoNuevo=Empleado(
+            empleadoNuevo=Empleados(
                 nombres_Empleado=datosEmpleados['nombres'],
                 apellidos_Empleado=datosEmpleados['apellidos'],
                 foto=datosEmpleados['foto'],
